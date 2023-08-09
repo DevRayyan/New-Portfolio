@@ -180,7 +180,7 @@ const musicList = [
   {
     title: "London View",
     cover: "./resource/img/london-view.jpg",
-    path: "./resource/audio/london-view.mp3",
+    path: "./resource/audio/London-view.mp3",
   },
   {
     title: "Ploua",
