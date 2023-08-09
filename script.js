@@ -175,7 +175,7 @@ const musicList = [
   {
     title: "Wahran",
     cover: "./resource/img/wahran.jpg",
-    path: "./resource/audio/wahran.mp3",
+    path: "./resource/audio/Wahran.mp3",
   },
   {
     title: "London View",
@@ -241,7 +241,16 @@ musicUi.forEach((li, i) => {
       pauseIcon.classList.add("fa-pause");
       activeIcon.classList.add("active");
       audioEl.src = musicList[i].path;
-      audioEl.play();
+        const playPromise = audioEl.play();
+  if (playPromise !== undefined) {
+    playPromise
+      .then(_ => {
+        // Playback started successfully
+      })
+      .catch(error => {
+        console.error('Error playing media:', error);
+      });
+  }
     } else {
       activeIcon.classList.remove("active");
       playIcon.classList.add("fa-play");
