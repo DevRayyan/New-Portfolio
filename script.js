@@ -175,12 +175,12 @@ const musicList = [
   {
     title: "Wahran",
     cover: "./resource/img/wahran.jpg",
-    path: "./resource/audio/Wahran.mp3",
+    path: "./resource/audio/wahran.mp3",
   },
   {
     title: "London View",
     cover: "./resource/img/london-view.jpg",
-    path: "./resource/audio/London-view.mp3",
+    path: "./resource/audio/london-view.mp3",
   },
   {
     title: "Ploua",
@@ -214,8 +214,7 @@ const musicList = [
   },
 ];
 
-// const musicPlay = (index) => {};
-const audioEl = new Audio(musicList[0].path);
+const audioEl = new Audio();
 const musicUi = Array.from(navTglMenu.querySelectorAll("li"));
 
 musicUi.forEach((li, i) => {
@@ -223,34 +222,32 @@ musicUi.forEach((li, i) => {
   const playIcon = button.children[2];
   const pauseIcon = button.children[2];
   const activeIcon = button.children[0];
-  
+
   button.children[1].src = musicList[i].cover;
-  
+
   li.addEventListener("click", () => {
     musicUi.forEach((lis) => {
-      const Prevbutton = lis.querySelector("button")
-      Prevbutton.children[2].classList.remove("fa-pause")
-      Prevbutton.children[2].classList.add("fa-play")
-      Prevbutton.children[0].classList.remove("active")
-      Prevbutton.children[0].style.backdropFilter ="blur(2px)"
-      Prevbutton.children[0].style.backgroundColor ="rgba(0, 0, 0, 0.121)"
+      const prevButton = lis.querySelector("button");
+      prevButton.children[2].classList.remove("fa-pause");
+      prevButton.children[2].classList.add("fa-play");
+      prevButton.children[0].classList.remove("active");
+      prevButton.children[0].style.backdropFilter = "blur(2px)";
+      prevButton.children[0].style.backgroundColor = "rgba(0, 0, 0, 0.121)";
+    });
 
-    })
     if (audioEl.paused) {
-      pauseIcon.classList.remove("fa-play");
-      pauseIcon.classList.add("fa-pause");
-      activeIcon.classList.add("active");
-      audioEl.src = musicList[i].path;
-        const playPromise = audioEl.play();
-  if (playPromise !== undefined) {
-    playPromise
-      .then(_ => {
-        // Playback started successfully
-      })
-      .catch(error => {
-        console.error('Error playing media:', error);
-      });
-  }
+      const { path } = musicList[i];
+      audioEl.src = path;
+      
+      audioEl.play()
+        .then(() => {
+          pauseIcon.classList.remove("fa-play");
+          pauseIcon.classList.add("fa-pause");
+          activeIcon.classList.add("active");
+        })
+        .catch(error => {
+          console.error('Error playing media:', error);
+        });
     } else {
       activeIcon.classList.remove("active");
       playIcon.classList.add("fa-play");
