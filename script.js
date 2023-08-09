@@ -228,8 +228,7 @@ musicUi.forEach((li, i) => {
   
   li.addEventListener("click", () => {
     musicUi.forEach((lis) => {
-      const Prevbutton = lis.querySelector("button");
-      console.log(Prevbutton)
+      const Prevbutton = lis.querySelector("button")
       Prevbutton.children[2].classList.remove("fa-pause")
       Prevbutton.children[2].classList.add("fa-play")
       Prevbutton.children[0].classList.remove("active")
